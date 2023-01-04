@@ -9,9 +9,7 @@ const path = require("path");
 const fs = require("fs");
 
 // Page Creation
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "your-team.html");
-const generateTeam = require("./src/page-template.js")
+const generateHTML = require("./src/page-template.js")
 
 // Array
 teamArray = [];
@@ -149,5 +147,18 @@ function buildTeam() {
 
 };
 
-// Generation after questions answered
+// Generate Page
+const generateTeam = data => {
+    fs.generateTeam('./dist/team.html', data, err => {
+        // If there's errors
+        if (err) {
+            console.log(err);
+            return;
+            // No Errors
+        } else {
+            console.log("Your teams' profiles are now avaliable!")
+        }
+    })
+};
+
 buildTeam();
