@@ -18,15 +18,16 @@ const generateTeamMembers = (team) => {
         </ul>
     </div>
 </div>
-    `};
+    `;
+    };
 
     // generate engineer card
     return `
-    `
+    `;
 
-        // generate intern card
-        `
+    // generate intern card
     `
+    `;
 };
 
 // export function to generate entire page
@@ -83,5 +84,5 @@ module.exports = (team) => {
 </body>
 
 </html>
-    `
+    `;
 };
