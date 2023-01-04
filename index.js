@@ -71,7 +71,7 @@ function buildTeam() {
         ]).then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
             teamArray.push(manager);
-            buildTeam();
+            newTeam();
         });
     }
 
@@ -106,7 +106,7 @@ function buildTeam() {
         ]).then(answers => {
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
             teamArray.push(engineer);
-            buildTeam();
+            newTeam();
         });
     }
 
@@ -141,7 +141,7 @@ function buildTeam() {
         ]).then(answers => {
             const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
             teamArray.push(intern);
-            buildTeam();
+            newTeam();
         });
     }
 
