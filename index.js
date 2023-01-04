@@ -1,14 +1,20 @@
+// Team Profiles
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+
+// Modules
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+
+// Page Creation
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "your-team.html");
 const generateTeam = require("./src/page-template.js")
 
-
+// Array
+teamArray = [];
 
 // Questions to build a team and fill in their information
 function newTeam() {
@@ -34,7 +40,39 @@ function newTeam() {
 }
 
 // Manager
+function addManager() {
+    inquirer.prompt([
 
+        {
+            type: "input",
+            name: "managerName",
+            message: "What is this manager's first name?"
+        },
+
+        {
+            type: "input",
+            name: "managerId",
+            message: "What is this manager's employee ID number?"
+        },
+
+        {
+            type: "input",
+            name: "managerEmail",
+            message: "What is this manager's email address?"
+        },
+
+        {
+            type: "input",
+            name: "managerOfficeNumber",
+            message: "What is this manager's office number?"
+        }
+
+    ]).then(answers => {
+        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+        teamArray.push(manager);
+    });
+
+}
 
 // Engineer
 
