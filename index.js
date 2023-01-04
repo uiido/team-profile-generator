@@ -16,127 +16,132 @@ const generateTeam = require("./src/page-template.js")
 // Array
 teamArray = [];
 
-// Questions to build a team and fill in their information
-function newTeam() {
-    inquirer.prompt([{
-        type: "list",
-        message: "What position are you adding?",
-        name: "addEmployeePrompt",
-        choices: ["Manager", "Engineer", "Intern", "My team is complete!"]
-    }]).then(function (userInput) {
-        switch (userInput.addEmployeePrompt) {
-            case "Manager":
-                addManager();
-                break;
-            case "Engineer":
-                addEngineer();
-                break;
-            case "Intern":
-                addIntern();
-                break;
-        }
+// Gathers all questions into one function
+function buildTeam() {
 
-    })
-}
+    // Questions to build a team and fill in their information
+    function newTeam() {
+        inquirer.prompt([{
+            type: "list",
+            message: "What position are you adding?",
+            name: "addEmployeePrompt",
+            choices: ["Manager", "Engineer", "Intern", "My team is complete!"]
+        }]).then(function (userInput) {
+            switch (userInput.addEmployeePrompt) {
+                case "Manager":
+                    addManager();
+                    break;
+                case "Engineer":
+                    addEngineer();
+                    break;
+                case "Intern":
+                    addIntern();
+                    break;
+            }
 
-// Manager
-function addManager() {
-    inquirer.prompt([
+        })
+    }
 
-        {
-            type: "input",
-            name: "managerName",
-            message: "What is this manager's first name?"
-        },
+    // Manager
+    function addManager() {
+        inquirer.prompt([
 
-        {
-            type: "input",
-            name: "managerId",
-            message: "What is this manager's employee ID number?"
-        },
+            {
+                type: "input",
+                name: "managerName",
+                message: "What is this manager's first name?"
+            },
 
-        {
-            type: "input",
-            name: "managerEmail",
-            message: "What is this manager's email address?"
-        },
+            {
+                type: "input",
+                name: "managerId",
+                message: "What is this manager's employee ID number?"
+            },
 
-        {
-            type: "input",
-            name: "managerOfficeNumber",
-            message: "What is this manager's office number?"
-        }
+            {
+                type: "input",
+                name: "managerEmail",
+                message: "What is this manager's email address?"
+            },
 
-    ]).then(answers => {
-        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
-        teamArray.push(manager);
-    });
-}
+            {
+                type: "input",
+                name: "managerOfficeNumber",
+                message: "What is this manager's office number?"
+            }
 
-// Engineer
-function addEngineer() {
-    inquirer.prompt([
+        ]).then(answers => {
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+            teamArray.push(manager);
+        });
+    }
 
-        {
-            type: "input",
-            name: "engineerName",
-            message: "What is this engineer's name?"
-        },
+    // Engineer
+    function addEngineer() {
+        inquirer.prompt([
 
-        {
-            type: "input",
-            name: "engineerId",
-            message: "What is this engineer's employee ID number?"
-        },
+            {
+                type: "input",
+                name: "engineerName",
+                message: "What is this engineer's name?"
+            },
 
-        {
-            type: "input",
-            name: "engineerEmail",
-            message: "What is this engineer's email address?"
-        },
+            {
+                type: "input",
+                name: "engineerId",
+                message: "What is this engineer's employee ID number?"
+            },
 
-        {
-            type: "input",
-            name: "engineerGithub",
-            message: "What is this engineer's GitHub username?"
-        }
+            {
+                type: "input",
+                name: "engineerEmail",
+                message: "What is this engineer's email address?"
+            },
 
-    ]).then(answers => {
-        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-        teamArray.push(engineer);
-    });
-}
+            {
+                type: "input",
+                name: "engineerGithub",
+                message: "What is this engineer's GitHub username?"
+            }
 
-// Intern
-function addIntern() {
-    inquirer.prompt([
+        ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            teamArray.push(engineer);
+        });
+    }
 
-        {
-            type: "input",
-            name: "internName",
-            message: "What is this intern's name?"
-        },
+    // Intern
+    function addIntern() {
+        inquirer.prompt([
 
-        {
-            type: "input",
-            name: "internId",
-            message: "What is this intern's employee ID number?"
-        },
+            {
+                type: "input",
+                name: "internName",
+                message: "What is this intern's name?"
+            },
 
-        {
-            type: "input",
-            name: "internEmail",
-            message: "What is this intern's email address?"
-        },
+            {
+                type: "input",
+                name: "internId",
+                message: "What is this intern's employee ID number?"
+            },
 
-        {
-            type: "input",
-            name: "internSchool",
-            message: "What school does this intern attend?"
-        }
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What is this intern's email address?"
+            },
 
-    ]).then(answers => {
-        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-        teamArray.push(intern);
-    });
-}
+            {
+                type: "input",
+                name: "internSchool",
+                message: "What school does this intern attend?"
+            }
+
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            teamArray.push(intern);
+        });
+    }
+
+};
