@@ -108,3 +108,35 @@ function addEngineer() {
 }
 
 // Intern
+function addIntern() {
+    inquirer.prompt([
+
+        {
+            type: "input",
+            name: "internName",
+            message: "What is this intern's name?"
+        },
+
+        {
+            type: "input",
+            name: "internId",
+            message: "What is this intern's employee ID number?"
+        },
+
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is this intern's email address?"
+        },
+
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What school does this intern attend?"
+        }
+
+    ]).then(answers => {
+        const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+        teamArray.push(intern);
+    });
+}
