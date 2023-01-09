@@ -4,7 +4,8 @@ const generateTeamMembers = (team) => {
         if (member.getJob() === 'Manager') {
             return `
             <article>
-                <h2>${member.getJob()}</h2>
+                <h2>${member.name()}</h2>
+                <h3>${member.getJob()}</h3>
                 <ul>
                     <li>ID: ${member.getId()}</li>
                     <li>Email:${member.getEmail}</li>
@@ -16,7 +17,8 @@ const generateTeamMembers = (team) => {
         if (member.getJob() === 'Engineer') {
             return `
             <article>
-                <h2>${member.getJob()}</h2>
+            <h2>${member.name()}</h2>
+            <h3>${member.getJob()}</h3>
                 <ul>
                     <li>ID: ${member.getId()}</li>
                     <li>Email:${member.getEmail}</li>
@@ -28,7 +30,8 @@ const generateTeamMembers = (team) => {
         if (member.getJob() === 'Intern') {
             return `
             <article>
-                <h2>${member.getJob()}</h2>
+            <h2>${member.name()}</h2>
+            <h3>${member.getJob()}</h3>
                 <ul>
                     <li>ID: ${member.getId()}</li>
                     <li>Email:${member.getEmail}</li>
@@ -153,5 +156,4 @@ module.exports = (team) => {
 
 </html>
     `;
-};
 };
