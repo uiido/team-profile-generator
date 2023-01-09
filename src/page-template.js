@@ -1,10 +1,49 @@
 // create the team
 const generateTeamMembers = (team) => {
+    team.map(member => {
+        if (member.getJob() === 'Manager') {
+            return `
+            <article>
+                <h2>${member.getJob()}</h2>
+                <ul>
+                    <li>ID: ${member.getId()}</li>
+                    <li>Email:${member.getEmail}</li>
+                    <li>Office Number: ${member.getOfficeNumber}</li>
+                </ul>
+            </article>
+            `
+        }
+        if (member.getJob() === 'Engineer') {
+            return `
+            <article>
+                <h2>${member.getJob()}</h2>
+                <ul>
+                    <li>ID: ${member.getId()}</li>
+                    <li>Email:${member.getEmail}</li>
+                    <li>GitHub: ${member.getGitHub}</li>
+                </ul>
+            </article>
+            `
+        }
+        if (member.getJob() === 'Intern') {
+            return `
+            <article>
+                <h2>${member.getJob()}</h2>
+                <ul>
+                    <li>ID: ${member.getId()}</li>
+                    <li>Email:${member.getEmail}</li>
+                    <li>School: ${member.school}</li>
+                </ul>
+            </article>
+            `
+        }
+    })
+};
 
-    // generate manager card
-    const generateManager = (manager) => {
-        return
-        `
+// generate manager card
+const generateManager = (manager) => {
+    return
+    `
     <div class="card employee-card">
     <div class="card-header">
         <h2>${manager.getName()}</h2>
@@ -19,11 +58,11 @@ const generateTeamMembers = (team) => {
     </div>
 </div>
     `;
-    };
+};
 
-    // generate engineer card
-    const generateEngineer = engineer => {
-        return `
+// generate engineer card
+const generateEngineer = engineer => {
+    return `
 <div class="card employee-card">
     <div class="card-header">
         <h2>${engineer.getName()}</h2>
@@ -38,11 +77,11 @@ const generateTeamMembers = (team) => {
     </div>
 </div>
         `;
-    };
+};
 
-    // generate intern card
-    const generateIntern = intern => {
-        return `
+// generate intern card
+const generateIntern = intern => {
+    return `
 <div class="card employee-card">
     <div class="card-header">
         <h2>${intern.getName()}</h2>
@@ -57,12 +96,12 @@ const generateTeamMembers = (team) => {
     </div>
 </div>
         `;
-    };
+};
 
-    // export function to generate entire page
-    module.exports = (team) => {
-        // TODO: MAIN HTML TEMPLATE LITERAL GOES HERE
-        return `
+// export function to generate entire page
+module.exports = (team) => {
+    // TODO: MAIN HTML TEMPLATE LITERAL GOES HERE
+    return `
     <!-- Instructor provided template -->
 <!DOCTYPE html>
 <html lang="en">
@@ -114,5 +153,5 @@ const generateTeamMembers = (team) => {
 
 </html>
     `;
-    };
+};
 };
