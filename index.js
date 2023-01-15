@@ -131,17 +131,23 @@ prompt(managerQuestions)
         })
     })
     .then(({ type }) => {
+        let response;
         switch (type) {
             case 'Manager': {
-                return prompt(managerQuestions);
+                response = prompt(managerQuestions);
             }
             case 'Engineer': {
-                return prompt(engineerQuestions);
+                response = prompt(engineerQuestions);
             }
             case 'Intern': {
-                return prompt(internQuestions);
+                response = prompt(internQuestions);
             }
         }
+        console.log(response);
+    })
+    .then((data) => {
+        const employees = new
+            console.log(employees);
     })
 
 
