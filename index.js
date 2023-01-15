@@ -14,33 +14,31 @@ const PageTemplate = require("./src/page-template.js")
 const prompt = inquirer.createPromptModule();
 const teamMembers = [];
 
-// const chooseEmployeeType = async ({ type }) => {
-//     let response;
-//     switch (type) {
-//         case 'Manager': {
-//             const response = await prompt(managerQuestions);
-//             const { name, id, email, gitHub } = response;
-//             const manager = new Manager(name, id, email, officeNumber);
-//             teamMembers.push(manager);
-//             break;
-//         }
-//         case 'Engineer': {
-//             const response = await prompt(engineerQuestions);
-//             const { name, id, email, gitHub } = response;
-//             const engineer = new Engineer(name, id, email, gitHub);
-//             teamMembers.push(engineer);
-//             break;
-//         }
-//         case 'Intern': {
-//             const response = await prompt(internQuestions);
-//             const { name, id, email, school } = response;
-//             const intern = new Intern(name, id, email, school);
-//             teamMembers.push(intern);
-//             break;
-//         }
-//     }
-//     console.log(response);
-// };
+const chooseEmployeeType = async ({ type }) => {
+    switch (type) {
+        case 'Manager': {
+            const response = await prompt(managerQuestions);
+            const { name, id, email, officeNumber } = response;
+            const manager = new Manager(name, id, email, officeNumber);
+            teamMembers.push(manager);
+            break;
+        }
+        case 'Engineer': {
+            const response = await prompt(engineerQuestions);
+            const { name, id, email, gitHub } = response;
+            const engineer = new Engineer(name, id, email, gitHub);
+            teamMembers.push(engineer);
+            break;
+        }
+        case 'Intern': {
+            const response = await prompt(internQuestions);
+            const { name, id, email, school } = response;
+            const engineer = new Engineer(name, id, email, school);
+            teamMembers.push(intern);
+            break;
+        }
+    }
+};
 
 // Questions
 const managerQuestions = [
@@ -130,21 +128,7 @@ prompt(managerQuestions)
             name: 'type',
         })
     })
-    .then(({ type }) => {
-        let response;
-        switch (type) {
-            case 'Manager': {
-                response = prompt(managerQuestions);
-            }
-            case 'Engineer': {
-                response = prompt(engineerQuestions);
-            }
-            case 'Intern': {
-                response = prompt(internQuestions);
-            }
-        }
-        console.log(response);
-    })
+    .then(chooseEmployeeType)
     .then((data) => {
         const employees = new
             console.log(employees);
