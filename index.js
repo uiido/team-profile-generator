@@ -14,6 +14,44 @@ const PageTemplate = require("./src/page-template.js")
 const prompt = inquirer.createPromptModule();
 const teamMembers = [];
 
+// Questions
+const managerQuestions = [
+    {
+        message: 'What is the manager\'s name?',
+        name: 'name',
+    },
+    {
+        message: 'What is the manager\'s id?',
+        name: 'id',
+    },
+    {
+        message: 'What is the manager\'s email?',
+        name: 'email',
+    },
+    {
+        message: 'What is the manager\'s office number?',
+        name: 'officeNumber',
+    },
+];
+const engineerQuestions = [
+    {
+        message: 'What is the engineer\'s name?',
+        name: 'name',
+    },
+    {
+        message: 'What is the engineer\'s id?',
+        name: 'id',
+    },
+    {
+        message: 'What is the engineer\'s email?',
+        name: 'email',
+    },
+    {
+        message: 'What is the engineer\'s GitHub?',
+        name: 'gitHub',
+    },
+];
+
 // Prompts
 prompt([
     {
