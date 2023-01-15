@@ -71,10 +71,50 @@ const internQuestions = [
 ];
 
 // Prompt system
-prompt(managerQuestions).then(({ name, id, email, officeNumber }) => {
-    const manager = new Manager(name, id, email, officeNumber);
-    teamMembers.push(manager);
-})
+prompt(managerQuestions)
+    .then(({ name, id, email, officeNumber }) => {
+        const manager = new Manager(name, id, email, officeNumber);
+        teamMembers.push(manager);
+    })
+    .then(() => {
+        prompt({
+            message: 'Would you like to add more employees?',
+            type: 'confirm',
+            name: 'addMoreEmployees',
+        })
+    })
+    .then(({ addMoreEmployees }) => {
+        if (addMoreEmployees) {
+            console.log('Continue');
+        } else {
+            console.log('Write file');
+        }
+    })
+    .then(() => {
+        return prompt({
+            type: 'rawlist',
+            message: 'What role of employee would you like to add?',
+            choices: [
+                'Manager',
+                'Engineer',
+                'Intern',
+            ],
+            name: 'role',
+        })
+            .then(({ type }) => {
+                switch (type) {
+                    case 'Manger': {
+                        return prompt(managerQuestions);
+                    }
+                    case 'Engineer': {
+                        return prompt(engineerQuestions);
+                    }
+                    case 'Intern': {
+                        return prompt(internQuestions);
+                    }
+                }
+            })
+    });
 
 
 
