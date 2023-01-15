@@ -51,26 +51,27 @@ const engineerQuestions = [
         name: 'gitHub',
     },
 ];
-
-// Prompts
-prompt([
+const internQuestions = [
     {
-        message: 'What is the manager\'s name?',
+        message: 'What is the intern\'s name?',
         name: 'name',
     },
     {
-        message: 'What is the manager\'s id?',
+        message: 'What is the intern\'s id?',
         name: 'id',
     },
     {
-        message: 'What is the manager\'s email?',
+        message: 'What is the intern\'s email?',
         name: 'email',
     },
     {
-        message: 'What is the manager\'s office number?',
-        name: 'officeNumber',
+        message: 'What is the intern\'s school?',
+        name: 'school',
     },
-]).then(({ name, id, email, officeNumber }) => {
+];
+
+// Prompt system
+prompt(managerQuestions).then(({ name, id, email, officeNumber }) => {
     const manager = new Manager(name, id, email, officeNumber);
     teamMembers.push(manager);
 })
