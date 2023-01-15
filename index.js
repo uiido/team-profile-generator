@@ -14,6 +14,34 @@ const PageTemplate = require("./src/page-template.js")
 const prompt = inquirer.createPromptModule();
 const teamMembers = [];
 
+// const chooseEmployeeType = async ({ type }) => {
+//     let response;
+//     switch (type) {
+//         case 'Manager': {
+//             const response = await prompt(managerQuestions);
+//             const { name, id, email, gitHub } = response;
+//             const manager = new Manager(name, id, email, officeNumber);
+//             teamMembers.push(manager);
+//             break;
+//         }
+//         case 'Engineer': {
+//             const response = await prompt(engineerQuestions);
+//             const { name, id, email, gitHub } = response;
+//             const engineer = new Engineer(name, id, email, gitHub);
+//             teamMembers.push(engineer);
+//             break;
+//         }
+//         case 'Intern': {
+//             const response = await prompt(internQuestions);
+//             const { name, id, email, school } = response;
+//             const intern = new Intern(name, id, email, school);
+//             teamMembers.push(intern);
+//             break;
+//         }
+//     }
+//     console.log(response);
+// };
+
 // Questions
 const managerQuestions = [
     {
@@ -77,7 +105,7 @@ prompt(managerQuestions)
         teamMembers.push(manager);
     })
     .then(() => {
-        prompt({
+        return prompt({
             message: 'Would you like to add more employees?',
             type: 'confirm',
             name: 'addMoreEmployees',
@@ -99,22 +127,22 @@ prompt(managerQuestions)
                 'Engineer',
                 'Intern',
             ],
-            name: 'role',
+            name: 'type',
         })
-            .then(({ type }) => {
-                switch (type) {
-                    case 'Manger': {
-                        return prompt(managerQuestions);
-                    }
-                    case 'Engineer': {
-                        return prompt(engineerQuestions);
-                    }
-                    case 'Intern': {
-                        return prompt(internQuestions);
-                    }
-                }
-            })
-    });
+    })
+    .then(({ type }) => {
+        switch (type) {
+            case 'Manager': {
+                return prompt(managerQuestions);
+            }
+            case 'Engineer': {
+                return prompt(engineerQuestions);
+            }
+            case 'Intern': {
+                return prompt(internQuestions);
+            }
+        }
+    })
 
 
 
