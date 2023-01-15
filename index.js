@@ -8,12 +8,32 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 // Page Source
-const PageTemplate = require("./src/page-template.js")
+const pageTemplate = require("./src/page-template.js")
 
 // Create Prompts 
 const prompt = inquirer.createPromptModule();
 const teamMembers = [];
 
+// Confirmation of new employees function
+const moreEmployeesConfirm = () => {
+    return prompt({
+        message: 'Would you like to add more employees?',
+        type: 'confirm',
+        name: 'addMoreEmployees',
+    })
+};
+
+const finalize = ({ addMoreEmployees }) => {
+    if (addMoreEmployees) {
+        console.log('Adding more employees:');
+    } else {
+        console.log('Your team page has been written!');
+        const template = pageTemplate(teamMembers);
+        fs.writeFileSync('./dist/team.html', template);
+    }
+};
+
+// Add more employees of x type function
 const chooseEmployeeType = async ({ type }) => {
     switch (type) {
         case 'Manager': {
@@ -33,7 +53,7 @@ const chooseEmployeeType = async ({ type }) => {
         case 'Intern': {
             const response = await prompt(internQuestions);
             const { name, id, email, school } = response;
-            const engineer = new Engineer(name, id, email, school);
+            const intern = new Intern(name, id, email, school);
             teamMembers.push(intern);
             break;
         }
@@ -45,54 +65,66 @@ const managerQuestions = [
     {
         message: 'What is the manager\'s name?',
         name: 'name',
+        default: 'Sophie',
     },
     {
         message: 'What is the manager\'s id?',
         name: 'id',
+        default: '123',
     },
     {
         message: 'What is the manager\'s email?',
         name: 'email',
+        default: 'hatter@castle.com',
     },
     {
         message: 'What is the manager\'s office number?',
         name: 'officeNumber',
+        default: '1',
     },
 ];
 const engineerQuestions = [
     {
         message: 'What is the engineer\'s name?',
         name: 'name',
+        default: 'Howl',
     },
     {
         message: 'What is the engineer\'s id?',
         name: 'id',
+        default: '321',
     },
     {
         message: 'What is the engineer\'s email?',
         name: 'email',
+        default: 'pendragon@castle.com',
     },
     {
         message: 'What is the engineer\'s GitHub?',
         name: 'gitHub',
+        default: 'royalwizard',
     },
 ];
 const internQuestions = [
     {
         message: 'What is the intern\'s name?',
         name: 'name',
+        default: 'Michael',
     },
     {
         message: 'What is the intern\'s id?',
         name: 'id',
+        default: '223',
     },
     {
         message: 'What is the intern\'s email?',
         name: 'email',
+        default: 'fisher@castle.com',
     },
     {
         message: 'What is the intern\'s school?',
         name: 'school',
+        default: 'Porthaven University',
     },
 ];
 
@@ -102,20 +134,8 @@ prompt(managerQuestions)
         const manager = new Manager(name, id, email, officeNumber);
         teamMembers.push(manager);
     })
-    .then(() => {
-        return prompt({
-            message: 'Would you like to add more employees?',
-            type: 'confirm',
-            name: 'addMoreEmployees',
-        })
-    })
-    .then(({ addMoreEmployees }) => {
-        if (addMoreEmployees) {
-            console.log('Continue');
-        } else {
-            console.log('Write file');
-        }
-    })
+    .then(moreEmployeesConfirm)
+    .then(finalize)
     .then(() => {
         return prompt({
             type: 'rawlist',
@@ -129,114 +149,5 @@ prompt(managerQuestions)
         })
     })
     .then(chooseEmployeeType)
-    .then((data) => {
-        const employees = new
-            console.log(employees);
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Make team member
-// const chooseEmployeeType = ({ type }) => {
-//     let response;
-//     switch (type) {
-//         case 'Manager': {
-//             const response = await prompt(managerQuestions);
-//             const { name, id, email, officeNumber } = response;
-//             new manager = new Manager(name, id, email, officeNumber);
-//             teamMembers.push(manager);
-//             break;
-//         }
-//         case 'Engineer': {
-//             const response = await prompt(engineerQuestions);
-//             const { name, id, email, gitHub } = response;
-//             new engineer = new Engineer(name, id, email, gitHub);
-//             teamMembers.push(engineer);
-//             break;
-//         }
-//         case 'Intern': {
-//             const response = await prompt(internQuestions);
-//             const { name, id, email, school } = response;
-//             new intern = new Intern(name, id, email, school);
-//             teamMembers.push(intern);
-//             break;
-//         }
-//     }
-// };
-
-
-
-// // Option to add another employee
-// const addMoreEmployees = () => {
-//     return prompt({
-//         message: 'Would you like to add more employees?',
-//         type: 'confirm',
-//         name: 'addMore',
-//     })
-// };
-
-// // Options for adding more employees
-// const addMoreEmployees = ({ addMore }) => {
-//     if (addMore) {
-//         chooseEmployeeType()
-//             .then(getEmployeeData)
-//             .then(confirmMoreEmployees)
-//             .then(addMoreEmployees);
-//     } else {
-//         const template = pageTemplate(teamMembers);
-//         fs.writeFileSync('./dist/team.html', template);
-//         console.log('Successfully written to ./dist/team.html');
-//         process.exit(0);
-//     }
-// }
-
-// // prompt(managerQuestions).then(({ name, id, email, officeNumber }) => {
-// //     const manager = new Manager(name, id, email, officeNumber);
-// //     teamMembers.push(manager);
-// //     teamMembers.push(manager);
-// // })
-// //     .then(confirmMoreEmployees)
-// //     .then(({ addMore }) => {
-// //         if (addMore) {
-// //             console.log('Continue');
-// //         } else {
-// //             console.log('Write file!');
-// //         }
-// //     })
-// //     .then(() => {
-// //         return prompt({
-// //             type: 'mainlist',
-// //             message: 'What employee type are you adding?',
-// //             choices: [
-// //                 'Manager',
-// //                 'Engineer',
-// //                 'Intern',
-// //             ],
-// //             name: 'type',
-// //         })
-// //     })
-// //     .then(chooseEmployeeType)
-// //     .then(confirmMoreEmployees)
-// //     .then(addMoreEmployees)
-
-// // Prompt chain
-//     .prompt(managerQuestions)
-//     .then(chooseManager)
-//     .then(confirmMoreEmployees)
-//     .then(addMoreEmployees);
+    .then(moreEmployeesConfirm)
+    .then(finalize)

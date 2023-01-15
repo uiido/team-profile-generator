@@ -1,15 +1,15 @@
 // create the team
 const generateTeamMembers = (team) => {
-    team.map(member => {
+    return team.map(member => {
         if (member.getJob() === 'Manager') {
             return `
             <article>
-                <h2>${member.name()}</h2>
-                <h3>${member.getJob()}</h3>
+                <h2>${member.getJob()}</h2>
                 <ul>
+                    <li>Name: ${member.getName()}</li>
                     <li>ID: ${member.getId()}</li>
-                    <li>Email:${member.getEmail}</li>
-                    <li>Office Number: ${member.getOfficeNumber}</li>
+                    <li>Email: ${member.getEmail()}</li>
+                    <li>Office Number: ${member.getOfficeNumber()}</li>
                 </ul>
             </article>
             `
@@ -17,12 +17,12 @@ const generateTeamMembers = (team) => {
         if (member.getJob() === 'Engineer') {
             return `
             <article>
-            <h2>${member.name()}</h2>
-            <h3>${member.getJob()}</h3>
+            <h2>${member.getJob()}</h2>
                 <ul>
+                    <li>Name: ${member.getName()}</li>
                     <li>ID: ${member.getId()}</li>
-                    <li>Email:${member.getEmail}</li>
-                    <li>GitHub: ${member.getGitHub}</li>
+                    <li>Email: ${member.getEmail()}</li>
+                    <li>Github: ${member.getGitHub()}</li>
                 </ul>
             </article>
             `
@@ -30,75 +30,17 @@ const generateTeamMembers = (team) => {
         if (member.getJob() === 'Intern') {
             return `
             <article>
-            <h2>${member.name()}</h2>
-            <h3>${member.getJob()}</h3>
+            <h2>${member.getJob()}</h2>
                 <ul>
+                    <li>Name: ${member.getName()}</li>
                     <li>ID: ${member.getId()}</li>
-                    <li>Email:${member.getEmail}</li>
-                    <li>School: ${member.school}</li>
+                    <li>Email: ${member.getEmail()}</li>
+                    <li>School: ${member.getSchool()}</li>
                 </ul>
             </article>
             `
         }
-    })
-};
-
-// generate manager card
-const generateManager = (manager) => {
-    return
-    `
-    <div class="card employee-card">
-    <div class="card-header">
-        <h2>${manager.getName()}</h2>
-        <h3>${manager.getJob()}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="card-id-list">
-            <li class="id-number">ID: ${manager.getId()}</li>
-            <li class="id-email">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-            <li class="id-office">Office number: ${manager.getOfficeNumber()}</li>
-        </ul>
-    </div>
-</div>
-    `;
-};
-
-// generate engineer card
-const generateEngineer = engineer => {
-    return `
-<div class="card employee-card">
-    <div class="card-header">
-        <h2>${engineer.getName()}</h2>
-        <h3>${engineer.getJob()}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="card-id-list">
-            <li class="id-number">ID: ${engineer.getId()}</li>
-            <li class="id-email">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-            <li class="id-github">GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank" rel="noopener noreferrer">${engineer.getGithub()}</a></li>
-        </ul>
-    </div>
-</div>
-        `;
-};
-
-// generate intern card
-const generateIntern = intern => {
-    return `
-<div class="card employee-card">
-    <div class="card-header">
-        <h2>${intern.getName()}</h2>
-        <h3>${intern.getJob()}</h3>
-    </div>
-    <div class="card-body">
-        <ul class="card-id-list">
-            <li class="id-number">ID: ${intern.getId()}</li>
-            <li class="id-email">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-            <li class="id-school">School: ${intern.getSchool()}</li>
-        </ul>
-    </div>
-</div>
-        `;
+    }).join('');
 };
 
 // export function to generate entire page
@@ -147,7 +89,7 @@ module.exports = (team) => {
         <h1>The Team</h1>
     </header>
     <main>
-    ${generateTeam(team)}
+    ${generateTeamMembers(team)}
     </main>
     <footer>
         &copy; 2022-2023
