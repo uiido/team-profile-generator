@@ -83,66 +83,54 @@ const managerQuestions = [
     {
         message: 'What is the manager\'s name?',
         name: 'name',
-        default: 'Sophie',
     },
     {
         message: 'What is the manager\'s id?',
         name: 'id',
-        default: '123',
     },
     {
         message: 'What is the manager\'s email?',
         name: 'email',
-        default: 'hatter@castle.com',
     },
     {
         message: 'What is the manager\'s office number?',
         name: 'officeNumber',
-        default: '1',
     },
 ];
 const engineerQuestions = [
     {
         message: 'What is the engineer\'s name?',
         name: 'name',
-        default: 'Howl',
     },
     {
         message: 'What is the engineer\'s id?',
         name: 'id',
-        default: '321',
     },
     {
         message: 'What is the engineer\'s email?',
         name: 'email',
-        default: 'pendragon@castle.com',
     },
     {
         message: 'What is the engineer\'s GitHub?',
         name: 'gitHub',
-        default: 'royalwizard',
     },
 ];
 const internQuestions = [
     {
         message: 'What is the intern\'s name?',
         name: 'name',
-        default: 'Michael',
     },
     {
         message: 'What is the intern\'s id?',
         name: 'id',
-        default: '223',
     },
     {
         message: 'What is the intern\'s email?',
         name: 'email',
-        default: 'fisher@castle.com',
     },
     {
         message: 'What is the intern\'s school?',
         name: 'school',
-        default: 'Porthaven University',
     },
 ];
 
