@@ -26,7 +26,10 @@ const moreEmployeesConfirm = () => {
 // Reloops or writes page
 const finalize = ({ addMoreEmployees }) => {
     if (addMoreEmployees) {
-        console.log('Adding more employees:');
+        chooseEmployeeType()
+            .then(employeeGenerate)
+            .then(moreEmployeesConfirm)
+            .then(finalize);
     } else {
         console.log('Your team page has been written!');
         const template = pageTemplate(teamMembers);
@@ -149,9 +152,5 @@ prompt(managerQuestions)
         const manager = new Manager(name, id, email, officeNumber);
         teamMembers.push(manager);
     })
-    .then(moreEmployeesConfirm)
-    .then(finalize)
-    .then(chooseEmployeeType)
-    .then(employeeGenerate)
     .then(moreEmployeesConfirm)
     .then(finalize)
