@@ -23,6 +23,7 @@ const moreEmployeesConfirm = () => {
     })
 };
 
+// Reloops or writes page
 const finalize = ({ addMoreEmployees }) => {
     if (addMoreEmployees) {
         console.log('Adding more employees:');
@@ -33,8 +34,22 @@ const finalize = ({ addMoreEmployees }) => {
     }
 };
 
+// Selects employee type
+const chooseEmployeeType = () => {
+    return prompt({
+        type: 'rawlist',
+        message: 'What role of employee would you like to add?',
+        choices: [
+            'Manager',
+            'Engineer',
+            'Intern',
+        ],
+        name: 'type',
+    })
+};
+
 // Add more employees of x type function
-const chooseEmployeeType = async ({ type }) => {
+const employeeGenerate = async ({ type }) => {
     switch (type) {
         case 'Manager': {
             const response = await prompt(managerQuestions);
@@ -136,18 +151,7 @@ prompt(managerQuestions)
     })
     .then(moreEmployeesConfirm)
     .then(finalize)
-    .then(() => {
-        return prompt({
-            type: 'rawlist',
-            message: 'What role of employee would you like to add?',
-            choices: [
-                'Manager',
-                'Engineer',
-                'Intern',
-            ],
-            name: 'type',
-        })
-    })
     .then(chooseEmployeeType)
+    .then(employeeGenerate)
     .then(moreEmployeesConfirm)
     .then(finalize)
