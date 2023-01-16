@@ -10,4 +10,4 @@ This is a user-run team profile generator! Using node.js, the user will be promp
 ## Visuals
 ![VideoDemo](./assets/Video-Demonstration.gif)
 
-![Screenshot](./assets/finalscreenshot.png)
+![Screenshot](./assets/pagescreenshot.png)
